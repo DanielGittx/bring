@@ -20,6 +20,7 @@ public class AccountController {
 
     @PostMapping("/create")
     public Account createAccount(@RequestBody Account account){
+        System.out.println("Test Account create");
         return accountService.createAccount(account);
     }
 
