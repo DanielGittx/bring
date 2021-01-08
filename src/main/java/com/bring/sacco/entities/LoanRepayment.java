@@ -17,29 +17,28 @@ public class LoanRepayment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long loanRepaymentId;
-
+    private Long loanRepaymentId;
+/*
 
     @OneToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value="loantype")
-    @JoinColumn(name = "loanTypeId", nullable = false)
+    @JoinColumn(name = "loantypeid", referencedColumnName = "loanTypeId", nullable = false)
     private LoanType loanType;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value="member")
-    @JoinColumn(name = "memberId", nullable = false)
-    private  Member member;
+    @JoinColumn(name = "memberid",referencedColumnName = "memberId", nullable = false)
+    private Member member;
 
     @OneToOne
     @JsonBackReference(value="loanapplication")
-    @JoinColumn(name = "loanApplicationId", nullable = false)
+    @JoinColumn(name = "loanapplicationid", referencedColumnName = "loanApplicationId",nullable = false)
     private LoanApplication loanApplication;
-
-    @Basic
+*/
     private Date repaymentDate;
-    private int loanAmount;
-    private int amountPayed;
-    private int loanBalance;
+    private Double loanAmount;
+    private Double amountPayed;
+    private Double loanBalance;
 
 
 }

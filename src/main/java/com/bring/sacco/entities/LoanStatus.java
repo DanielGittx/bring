@@ -14,7 +14,7 @@ public class LoanStatus {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long loanStatusId;
+    private Long loanStatusId;
     private String name;
 
 }

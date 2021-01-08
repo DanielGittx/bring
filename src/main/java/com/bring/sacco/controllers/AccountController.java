@@ -5,6 +5,7 @@ import com.bring.sacco.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -19,6 +20,7 @@ public class AccountController {
 
     @PostMapping("/create")
     public Account createAccount(@RequestBody Account account){
+        account.setSqlTimestamp(new Date());   //Time now
         System.out.println("Test Account create");
         return accountService.createAccount(account);
     }

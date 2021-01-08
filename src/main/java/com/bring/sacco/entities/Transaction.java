@@ -17,27 +17,30 @@ public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long transactionId;
+    private Long transactionId;
 
+    /*
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonBackReference(value="account")
+    //@JsonBackReference(value="account")
     @JoinColumn(name = "accountId", nullable = false)
     private Account account;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference(value="member")
+    //@JsonBackReference(value="member")
     @JoinColumn(name="memberId")
     private Member member;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference(value="transactionType")
+    //@JsonBackReference(value="transactionType")
     @JoinColumn(name ="transactionTypeId")
     private TransactionType transactionType;
 
     @Basic
     private Date transactionDate;
-    private long accountNoTo;
-    private long accountNoFrom;
-    private int transactionAmount;
+    private Long accountNoTo;
+    private Long accountNoFrom;
+    private Double transactionAmount;
+
+    */
 
 }

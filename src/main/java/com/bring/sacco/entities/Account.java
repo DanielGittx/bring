@@ -20,10 +20,19 @@ public class Account {
     @Column(unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long accountId;
+    private Date sqlTimestamp;
 
+    private String accountStatus;
+    private double accountBalance;
+
+    private Long memberId;              //We can pull details of member having the id. Hibernate has already set this ID as a foreign key
+    private Long accountTypeId ;        //We can pull details of account having the id. Hibernate has already set this ID as a foreign key
+
+
+    /*
     // bi-directional many-to-one association to Member (i.e Many Accounts to 1 Member)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonBackReference(value="account")
+    @JsonBackReference(value="member")
     @JoinColumn(name = "memberId", nullable = false)
     private Member member;
 
@@ -32,11 +41,6 @@ public class Account {
     @JoinColumn(name = "accountTypeId", nullable = false)
     private AccountType accountType ;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date sqlTimestamp;
-
-    private String accountStatus;
-    private double accountBalance;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonBackReference(value="loanapplication")
@@ -52,7 +56,7 @@ public class Account {
     @JsonBackReference(value="transaction")
     @JoinColumn(name = "transactionId", nullable = false)
     private Set<Transaction> transaction = new HashSet<>();;
-
+*/
 
 
 

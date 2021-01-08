@@ -16,8 +16,9 @@ public class ShareCapital {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long shareCapitalId;
+    private Long shareCapitalId;
 
+    /*
     @OneToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value="member")
     @JoinColumn(name = "memberId", nullable = false)
@@ -28,6 +29,8 @@ public class ShareCapital {
     @JoinColumn(name = "accountId", nullable = false)
     private Account account;
 
-    private int amountReceived;
+    */
+
+    private double amountReceived;
 
 }
