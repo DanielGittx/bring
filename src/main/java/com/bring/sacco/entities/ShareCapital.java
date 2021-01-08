@@ -1,62 +1,33 @@
 package com.bring.sacco.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ShareCapital {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="memberId")
-    private Member memberId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long shareCapitalId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="accountId")
-    private Account accountId;
+    @JsonBackReference(value="member")
+    @JoinColumn(name = "memberId", nullable = false)
+    private Member member;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonBackReference(value="account")
+    @JoinColumn(name = "accountId", nullable = false)
+    private Account account;
+
     private int amountReceived;
 
-
-    public ShareCapital(long id, Member memberId, Account accountId, int amountReceived){
-
-        this.id = id;
-        this.memberId = memberId;
-        this.accountId = accountId;
-        this.amountReceived = amountReceived;
-
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Member getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Member memberId) {
-        this.memberId = memberId;
-    }
-
-    public Account getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Account accountId) {
-        this.accountId = accountId;
-    }
-
-    public int getAmountReceived() {
-        return amountReceived;
-    }
-
-    public void setAmountReceived(int amountReceived) {
-        this.amountReceived = amountReceived;
-    }
 }

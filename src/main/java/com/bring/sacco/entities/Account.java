@@ -1,116 +1,61 @@
 package com.bring.sacco.entities;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long accountId;
 
+    // bi-directional many-to-one association to Member (i.e Many Accounts to 1 Member)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="memberId")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private  long memberId;
+    @JsonBackReference(value="account")
+    @JoinColumn(name = "memberId", nullable = false)
+    private Member member;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="accountTypeId")
-    private AccountType accountType;
+    @OneToOne
+    @JsonBackReference(value="accounttype")
+    @JoinColumn(name = "accountTypeId", nullable = false)
+    private AccountType accountType ;
 
-    @Basic
-    private java.sql.Timestamp sqlTimestamp;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date sqlTimestamp;
+
     private String accountStatus;
-    private int accountBalance;
+    private double accountBalance;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "accountId", referencedColumnName = "id")
+    @JsonBackReference(value="loanapplication")
+    @JoinColumn(name = "loanApplicationId", nullable = false)
     private Set<LoanApplication> loanApplication = new HashSet<>();
 
-    @OneToOne(mappedBy="accountId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonBackReference(value="sharecapital")
+    @JoinColumn(name = "shareCapitalId", nullable = false)
     private ShareCapital shareCapital;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "accountId", referencedColumnName = "id")
-    private Set<Transaction> transaction = new HashSet<>();
+    @JsonBackReference(value="transaction")
+    @JoinColumn(name = "transactionId", nullable = false)
+    private Set<Transaction> transaction = new HashSet<>();;
 
 
-    public Account(long id, long memberId, AccountType accountType, Timestamp sqlTimestamp, String accountStatus, int accountBalance) {
-        this.id = id;
-        this.memberId = memberId;
-        this.accountType = accountType;
-        this.sqlTimestamp = sqlTimestamp;
-        this.accountStatus = accountStatus;
-        this.accountBalance = accountBalance;
-    }
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
-    public long getMemberId() {
-        return memberId;
-    }
 
-    public void setMemberId(long memberId) {
-        this.memberId = memberId;
-    }
-
-    public Set<LoanApplication> getLoanApplication() {
-        return loanApplication;
-    }
-
-    public void setLoanApplication(Set<LoanApplication> loanApplication) {
-        this.loanApplication = loanApplication;
-    }
-
-    public Set<Transaction> getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(Set<Transaction> transaction) {
-        this.transaction = transaction;
-    }
-
-    public AccountType getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
-    }
-
-    public Timestamp getSqlTimestamp() {
-        return sqlTimestamp;
-    }
-
-    public void setSqlTimestamp(Timestamp sqlTimestamp) {
-        this.sqlTimestamp = sqlTimestamp;
-    }
-
-    public String getAccountStatus() {
-        return accountStatus;
-    }
-
-    public void setAccountStatus(String accountStatus) {
-        this.accountStatus = accountStatus;
-    }
-
-    public int getAccountBalance() {
-        return accountBalance;
-    }
-
-    public void setAccountBalance(int accountBalance) {
-        this.accountBalance = accountBalance;
-    }
 }

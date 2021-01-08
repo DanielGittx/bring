@@ -1,7 +1,6 @@
 package com.bring.sacco.controllers;
 
 import com.bring.sacco.entities.Account;
-import com.bring.sacco.repositories.AccountRepository;
 import com.bring.sacco.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

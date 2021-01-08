@@ -1,109 +1,43 @@
 package com.bring.sacco.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Transaction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long transactionId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="accountId")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference(value="account")
+    @JoinColumn(name = "accountId", nullable = false)
     private Account account;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonBackReference(value="member")
     @JoinColumn(name="memberId")
-    private Member memberId;
+    private Member member;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonBackReference(value="transactionType")
     @JoinColumn(name ="transactionTypeId")
     private TransactionType transactionType;
 
     @Basic
-    private java.sql.Timestamp transactionDate;
+    private Date transactionDate;
     private long accountNoTo;
     private long accountNoFrom;
     private int transactionAmount;
 
-    public Transaction(long id, Account account, Member member, TransactionType
-            transactionType, java.sql.Timestamp transactionDate, long accountNoTo,
-                       long accountNoFrom, int transactionAmount){
-
-        this.id= id;
-        this.account = account;
-        this.memberId = member;
-        this.transactionType = transactionType;
-        this.transactionDate = transactionDate;
-        this.accountNoTo = accountNoTo;
-        this.accountNoFrom =accountNoFrom;
-        this.transactionAmount = transactionAmount;
-
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public Member getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Member memberId) {
-        this.memberId = memberId;
-    }
-
-    public TransactionType getTransactionType() {
-        return transactionType;
-    }
-
-    public void setTransactionType(TransactionType transactionType) {
-        this.transactionType = transactionType;
-    }
-
-    public Timestamp getTransactionDate() {
-        return transactionDate;
-    }
-
-    public void setTransactionDate(Timestamp transactionDate) {
-        this.transactionDate = transactionDate;
-    }
-
-    public long getAccountNoTo() {
-        return accountNoTo;
-    }
-
-    public void setAccountNoTo(long accountNoTo) {
-        this.accountNoTo = accountNoTo;
-    }
-
-    public long getAccountNoFrom() {
-        return accountNoFrom;
-    }
-
-    public void setAccountNoFrom(long accountNoFrom) {
-        this.accountNoFrom = accountNoFrom;
-    }
-
-    public int getTransactionAmount() {
-        return transactionAmount;
-    }
-
-    public void setTransactionAmount(int transactionAmount) {
-        this.transactionAmount = transactionAmount;
-    }
 }
