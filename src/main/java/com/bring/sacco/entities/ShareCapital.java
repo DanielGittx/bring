@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class ShareCapital {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long shareCapitalId;
     private long memberId;
     private long accountId;

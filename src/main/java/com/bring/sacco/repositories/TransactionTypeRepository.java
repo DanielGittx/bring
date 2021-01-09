@@ -7,7 +7,5 @@ import java.util.List;
 
 public interface TransactionTypeRepository extends JpaRepository<TransactionType, Long> {
 
-    List<TransactionType> findAllById(long id);
-    List<TransactionType>findAllByName(String name);
 }
 

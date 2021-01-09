@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long transactionId;
     private long accountId;
     private long memberId;

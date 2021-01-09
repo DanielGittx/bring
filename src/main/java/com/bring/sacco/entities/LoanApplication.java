@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class LoanApplication {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long loanApplicationId;
     private long loanTypeId;
     private long accountId;

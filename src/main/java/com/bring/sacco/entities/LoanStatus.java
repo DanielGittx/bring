@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class LoanStatus {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long loanStatusId;
     private String name;
 
