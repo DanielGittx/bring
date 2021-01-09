@@ -16,36 +16,19 @@ import java.util.Set;
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long memberId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long memberId;
 
-    private String firstName;
-    private String lastName;
+    private String fname;
+    private String lname;
     private String email;
     private String photo;
-    private String kraPin;
-    private Integer nationalId;
-    private Integer phoneNumber;
-
-    /*
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonBackReference(value="sharecapital")
-    @JoinColumn(name = "shareCapitalId", nullable = false)
-    private ShareCapital shareCapital;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonBackReference(value="transaction")
-    @JoinColumn(name = "transactionId", nullable = false)
-    private Set<Transaction> transaction = new HashSet<>();
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JsonBackReference(value="loanrepayment")
-    @JoinColumn(name = "loanRepaymentId", nullable = false)
-    private Set<LoanRepayment> loanRepayment = new HashSet<>();
-
-
- */
-
+    private String krapin;
+    private int nationalId;
+    private int phonenumber;
+    private long shareCapitalId;
+    private long transactionId;
+    private long loanRepaymentId;
 
 
 }

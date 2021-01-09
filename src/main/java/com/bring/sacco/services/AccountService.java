@@ -1,38 +1,55 @@
 package com.bring.sacco.services;
 
 import com.bring.sacco.entities.Account;
+import com.bring.sacco.entities.Member;
+import com.bring.sacco.exception_handlers.ResourceNotFoundException;
 import com.bring.sacco.repositories.AccountRepository;
+import com.bring.sacco.repositories.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class AccountService {
-
     @Autowired
-    AccountRepository accountRepository;
+    private AccountRepository accountRepository;
+    @Autowired
+    private MemberRepository memberRepository;
 
-    //crud
-    public Account createAccount(Account account) {
+
+
+    public Account createAccount(Account account){
+
+        Member member = memberRepository.findById(account.getMemberId()).orElse(null);
+        if (member == null){
+            throw new ResourceNotFoundException("Member not found");
+
+        }
+
         return accountRepository.save(account);
+
+
     }
 
-    public Account updateAccount(Account dto)
-    {
-        return accountRepository.save(dto);
+    public Account updateAccount(Account account){
+        account.setSqlTimestamp(new Date());
+
+
+        return accountRepository.save(account);
+
     }
-    public List<Account> getAll()
-    {
+
+    public List<Account> getAll() {
         return accountRepository.findAll();
     }
-    public void deleteById(long id)
-    {
-        accountRepository.findById(id);
+
+    public void deleteById(long id) {
+        accountRepository.deleteById(id);
     }
-
-
 
 
 }

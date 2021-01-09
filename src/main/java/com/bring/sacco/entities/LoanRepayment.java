@@ -14,31 +14,16 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoanRepayment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long loanRepaymentId;
-/*
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JsonBackReference(value="loantype")
-    @JoinColumn(name = "loantypeid", referencedColumnName = "loanTypeId", nullable = false)
-    private LoanType loanType;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JsonBackReference(value="member")
-    @JoinColumn(name = "memberid",referencedColumnName = "memberId", nullable = false)
-    private Member member;
-
-    @OneToOne
-    @JsonBackReference(value="loanapplication")
-    @JoinColumn(name = "loanapplicationid", referencedColumnName = "loanApplicationId",nullable = false)
-    private LoanApplication loanApplication;
-*/
+    private long loanRepaymentId;
+    private long loanTypeId;
+    private  long memberId;
+    private long loanApplicationId;
     private Date repaymentDate;
-    private Double loanAmount;
-    private Double amountPayed;
-    private Double loanBalance;
+    private int loanAmount;
+    private int amountPayed;
+    private int loanBalance;
 
 
 }

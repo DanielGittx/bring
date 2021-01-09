@@ -9,19 +9,21 @@ import java.util.Date;
 import java.util.List;
 
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/account")
+@RequestMapping("account")
 public class AccountController {
 
-    @Autowired
-    AccountService accountService;
+    private final AccountService accountService;
 
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
 
+    }
 
     @PostMapping("/create")
     public Account createAccount(@RequestBody Account account){
-        account.setSqlTimestamp(new Date());   //Time now
-        System.out.println("Test Account create");
         return accountService.createAccount(account);
     }
 
@@ -40,6 +42,5 @@ public class AccountController {
     public void deleteById(@PathVariable int id) {
         accountService.deleteById(id);
     }
-
 
 }

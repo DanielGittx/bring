@@ -14,18 +14,9 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransactionType {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long transactionTypeId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long transactionId;
     private String name;
-
-    /*
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonBackReference(value="transaction")
-    @JoinColumn(name = "transactionId", nullable = false)
-    private Set<Transaction> transaction ;
-
-    */
 
 }

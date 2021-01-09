@@ -14,33 +14,14 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Transaction {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long transactionId;
-
-    /*
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    //@JsonBackReference(value="account")
-    @JoinColumn(name = "accountId", nullable = false)
-    private Account account;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    //@JsonBackReference(value="member")
-    @JoinColumn(name="memberId")
-    private Member member;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    //@JsonBackReference(value="transactionType")
-    @JoinColumn(name ="transactionTypeId")
-    private TransactionType transactionType;
-
-    @Basic
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long transactionId;
+    private long accountId;
+    private long memberId;
+    private long transactionTypeId;
     private Date transactionDate;
-    private Long accountNoTo;
-    private Long accountNoFrom;
-    private Double transactionAmount;
-
-    */
-
+    private long accountNoTo;
+    private long accountNoFrom;
+    private int transactionAmount;
 }

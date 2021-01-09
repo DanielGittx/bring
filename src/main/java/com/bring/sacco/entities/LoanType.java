@@ -12,26 +12,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoanType {
-
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long loanTypeID;
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long loanTypeId;
     private String name;
-    private Double maximumAmount;
-    private Double minimumAmount;
-    private Double maximumRepaymentPeriod;
-/*
-    @OneToOne
-    @JsonBackReference(value="loanapplication")
-    @JoinColumn(name = "loanApplicationId", nullable = false)
-    private LoanApplication loanApplication;
+    private int maximumAmount;
+    private int minimumAmount;
+    private int maximumRepaymentPeriod;
 
-    @OneToOne
-    @JsonBackReference(value="loanrepayment")
-    @JoinColumn(name = "loanRepaymentId", nullable = false)
-    private LoanRepayment loanRepayment;
-*/
 
 }

@@ -13,24 +13,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class ShareCapital {
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long shareCapitalId;
-
-    /*
-    @OneToOne(cascade = CascadeType.ALL)
-    @JsonBackReference(value="member")
-    @JoinColumn(name = "memberId", nullable = false)
-    private Member member;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JsonBackReference(value="account")
-    @JoinColumn(name = "accountId", nullable = false)
-    private Account account;
-
-    */
-
-    private double amountReceived;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long shareCapitalId;
+    private long memberId;
+    private long accountId;
+    private int amountReceived;
 
 }

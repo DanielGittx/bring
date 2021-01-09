@@ -13,8 +13,8 @@ import javax.persistence.*;
 public class AccountType {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long accountTypeId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long accountTypeId;
     private String name;
 
 }
